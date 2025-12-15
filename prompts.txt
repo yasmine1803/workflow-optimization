@@ -1,0 +1,4 @@
+prompt1:
+identify and find ai bugs
+prompt2:
+Refactor it into a reusable component (e.g., Card(title, price, features)).

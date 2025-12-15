@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.pricing {
+  width: 300px;
+  margin: 16px auto;
+  background-color: #fff;
+  box-shadow: 0 0 10px #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.price {
+  font-size: 18px;
+  color: green;
+}
+
+.features {
+  list-style: none;
+  padding-left: 0;
+}
+
+.features li {
+  padding: 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.btn {
+  background: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: darkblue;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+</style>
+</head>
+<body>
+
+<div id="cards" class="cards"></div>
+
+<script>
+  // Reusable card factory
+  function Card({ title, price, features, cta }) {
+    const card = document.createElement('div');
+    card.className = 'pricing';
+
+    card.innerHTML = `
+      <h2 class="title">${title}</h2>
+      <p class="price">${price}</p>
+      <ul class="features">
+        ${features.map((item) => `<li>${item}</li>`).join('')}
+      </ul>
+      <button class="btn">${cta ?? 'Start Trial'}</button>
+    `;
+
+    return card;
+  }
+
+  // Example data set
+  const plans = [
+    {
+      title: 'Basic Plan',
+      price: '$9.99 /month',
+      features: ['1 GB Storage', 'Basic Support', 'All Core Features'],
+      cta: 'Start Trial',
+    },
+    {
+      title: 'Pro Plan',
+      price: '$19.99 /month',
+      features: ['10 GB Storage', 'Priority Support', 'Advanced Analytics'],
+      cta: 'Upgrade',
+    },
+  ];
+
+  // Render cards
+  const container = document.getElementById('cards');
+  plans.forEach((plan) => container.appendChild(Card(plan)));
+</script>
+
+</body>
+</html>
